@@ -29,7 +29,10 @@ const port = 3000
 const start = async () => {
     try{
         await connectDB(process.env.MONGO_URI)
-        app.listen(port,console.log(`Server Is Listening On Port ${port}....`))
+        app.listen(process.env.PORT || 3000, function(){
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
+
 
     } catch (error) {
         console.log(error)
